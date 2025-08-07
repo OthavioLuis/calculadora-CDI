@@ -8,7 +8,7 @@ export default function CalculadoraCDI() {
 
   const [valorInicial, setValorInicial] = useState('');
   const [meses, setMeses] = useState('12');
-  const [porcentagemCDI, setPorcentagemCDI] = useState('100');
+  const [porcentagemCDI, setPorcentagemCDI] = useState('110');
   
   const [taxaCDI, setTaxaCDI] = useState<number>(0);
   const [carregando, setCarregando] = useState(true);
