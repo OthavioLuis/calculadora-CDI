@@ -1,18 +1,17 @@
-'use client';
+'use client'
+import { useTheme } from 'next-themes'
+import { FiSun, FiMoon } from 'react-icons/fi'
 
-import { useTema } from '@/context/TemaContext';
-import { FiSun, FiMoon } from 'react-icons/fi';
-
-export default function BotaoTema() {
-  const { temaEscuro, alternarTema } = useTema();
+export function BotaoTema() {
+  const { theme, setTheme } = useTheme()
 
   return (
     <button
-      onClick={alternarTema}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white transition-colors duration-200"
-      aria-label={temaEscuro ? 'Modo claro' : 'Modo escuro'}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className="p-2 rounded-full bg-input/30 border border-input text-foreground"
+      aria-label="Alternar tema"
     >
-      {temaEscuro ? <FiSun size={20} /> : <FiMoon size={20} />}
+      {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
     </button>
-  );
+  )
 }

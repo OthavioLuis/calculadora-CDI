@@ -5,16 +5,24 @@ interface ParametrosCalculoCDI {
   porcentagemCDI: number;
 }
 
+export interface ResultadoCalculado {
+  montanteFinal: number;
+  rendimento: number;
+}
+
 export function calcularCDI({
   valorInicial,
   meses,
   taxaCDIAnual,
   porcentagemCDI,
-}: ParametrosCalculoCDI): number {
+}: ParametrosCalculoCDI): ResultadoCalculado {
   const taxaEfetiva = (taxaCDIAnual * porcentagemCDI) / 10000;
   const taxaMensal = Math.pow(1 + taxaEfetiva, 1 / 12) -1;
   const montanteFinal = valorInicial * Math.pow(1 + taxaMensal, meses);
-  return montanteFinal
+  return {
+    montanteFinal,
+    rendimento: montanteFinal - valorInicial
+  }
 }
 
 export async function buscarCDIAtual(): Promise<number> {
