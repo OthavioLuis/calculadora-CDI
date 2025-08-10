@@ -48,6 +48,10 @@ export default function CalculadoraCDI() {
     setResultado(resultado);
   }, [valorInicial, meses, taxaCDI, porcentagemCDI]);
 
+  function formatoBrasileiro(valor: number) {
+    return valor.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
+
   return (
     <div className="max-w-4xl p-6 mx-auto bg-card rounded-lg border border-border shadow-md">
       <div className="flex justify-end items-center mb-4">
@@ -117,7 +121,7 @@ export default function CalculadoraCDI() {
                 Valor Bruto Final
               </h2>
               <p className="text-2xl font-bold text-primary">
-                R$ {resultado.montanteFinal.toFixed(2)}
+                R$ {formatoBrasileiro(resultado.montanteFinal)}
               </p>
             </div>
 
@@ -126,7 +130,7 @@ export default function CalculadoraCDI() {
                 Rendimento
               </h2>
               <p className="text-2xl font-bold text-green-500">
-                + R$ {resultado.rendimento.toFixed(2)}
+                + R$ {formatoBrasileiro(resultado.rendimento)}
               </p>
               <p className="text-sm text-muted-foreground mt-1">
                 {((resultado.rendimento / parseFloat(valorInicial || "1")) * 100).toFixed(2)}% no período
